@@ -1,3 +1,6 @@
+
+// this is a test file and hasnt been tested
+
 #include <Wire.h>
 #include <AS5600.h>
 

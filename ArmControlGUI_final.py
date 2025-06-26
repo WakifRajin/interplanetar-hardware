@@ -26,7 +26,7 @@ class DetachedPlotWindow(QMainWindow):
 class ArmControlGUI(QMainWindow):
     def __init__(self):
         super().__init__()
-        self.setWindowTitle("Professional Arm Control GUI")
+        self.setWindowTitle("Arm Control GUI")
         self.setGeometry(100, 100, 1280, 720)
 
         self.gripper_state = False

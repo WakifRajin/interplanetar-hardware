@@ -1,33 +1,20 @@
-volatile long encoderCount = 0;
-const int encoderPinA = 34;  // Channel A
-const int encoderPinB = 35;  // Channel B
-
-void IRAM_ATTR handleEncoderA() {
-  // Read channel B to determine rotation direction
-  if (digitalRead(encoderPinB) == HIGH) {
-    encoderCount++;
-  } else {
-    encoderCount--;
-  }
-}
+const int encoderPinA = 34;
+const int encoderPinB = 35;
 
 void setup() {
   Serial.begin(115200);
-  
   pinMode(encoderPinA, INPUT_PULLUP);
   pinMode(encoderPinB, INPUT_PULLUP);
-
-  attachInterrupt(digitalPinToInterrupt(encoderPinA), handleEncoderA, RISING);
 }
 
 void loop() {
-  static long lastCount = 0;
+  int A = digitalRead(encoderPinA);
+  int B = digitalRead(encoderPinB);
 
-  if (lastCount != encoderCount) {
-    Serial.print("Encoder Count: ");
-    Serial.println(encoderCount);
-    lastCount = encoderCount;
-  }
+  Serial.print("A: ");
+  Serial.print(A);
+  Serial.print(" | B: ");
+  Serial.println(B);
 
-  delay(50); // Adjust for responsiveness
+  delay(100);  // 10 readings per second
 }
